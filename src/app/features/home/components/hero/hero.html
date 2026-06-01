@@ -1,1 +1,40 @@
-<p>Hero works!</p>,
+ <section id="hero" class="min-h-screen flex items-center">
+      <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
+
+        <div class="flex-1 flex flex-col gap-6">
+          <p class="text-sm uppercase tracking-widest">
+            {{ 'hero.greeting' | translate }}
+          </p>
+
+          <h1 class="text-5xl font-bold">
+            {{ 'hero.name' | translate }}
+          </h1>
+
+          <h2 class="text-2xl font-medium">
+            {{ 'hero.role' | translate }}
+          </h2>
+
+          <p class="text-base leading-relaxed max-w-md">
+            {{ 'hero.bio' | translate }}
+          </p>
+
+          <div class="flex gap-4">
+            <a href="#projects">
+              {{ 'hero.cta_projects' | translate }}
+            </a>
+            <a href="#contact">
+              {{ 'hero.cta_contact' | translate }}
+            </a>
+          </div>
+        </div>
+
+        <div class="flex-shrink-0">
+          <img
+            src="/assets/images/profile.jpg"
+            alt="{{ 'hero.photo_alt' | translate }}"
+            class="w-64 h-64 rounded-full object-cover"
+          />
+        </div>
+
+      </div>
+    </section>

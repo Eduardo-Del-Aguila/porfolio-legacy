@@ -1,7 +1,7 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection, provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
 import { provideTranslateService,  } from '@ngx-translate/core';
 import { provideTranslateHttpLoader, } from '@ngx-translate/http-loader';
 import { routes } from './app.routes';
@@ -9,10 +9,13 @@ import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideBrowserGlobalErrorListeners(),
+    provideZonelessChangeDetection(),
     provideRouter(routes),
-    provideClientHydration(withEventReplay()),
-    provideHttpClient(withFetch()),
+    // provideClientHydration(withEventReplay()),
+    //para desarrollo usaré esta
+    provideHttpClient(),
+    // provideHttpClient(withFetch(), withInterceptorsFromDi()),
     provideTranslateService(
       {
         loader: provideTranslateHttpLoader({prefix:"/assets/i18n/", suffix:".json"}),

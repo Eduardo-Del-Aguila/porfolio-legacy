@@ -10,6 +10,7 @@ import { ProjectsService } from '../../core/services/projects.service';
 @Component({
   selector: 'app-home',
   imports: [Navbar, Hero, ProjectsSection, SkillsSection, CertificationsSection, ContactSection],
+  // imports: [Navbar, Hero, ProjectsSection, SkillsSection, CertificationsSection, ContactSection],
   templateUrl: './home.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

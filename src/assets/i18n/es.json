@@ -4,5 +4,16 @@
     "skills": "Skills",
     "certifications": "Certificaciones",
     "contact": "Contacto"
+  },
+  "hero": {
+  "greeting": "Hola, soy",
+  "name": "Eduardo Del Aguila Honorio",
+  "role": "Full Stack Developer",
+  "bio": "Estudiante de ultimos ciclos de la carreara de Ingenieria de sistemas de la información. Futuro google expert developer ;)",
+  "cta_projects": "Ver proyectos",
+  "photo_alt": "Foto de perfil"
+  },
+  "algo": {
+
   }
 }
