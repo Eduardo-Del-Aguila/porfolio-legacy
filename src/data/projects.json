@@ -1,0 +1,19 @@
+[
+  {
+    "slug": "my-porfolio",
+    "liveUrl": "https://my-first-project.netlify.app",
+    "image": "/assets/img/my-first-project.png",
+    "languages": ["Angular", "TypeScript", "Tailwind CSS"],
+    "readmeUrl": "https://raw.githubusercontent.com/tuuser/my-first-project/main/README.md",
+    "translations": {
+      "en": {
+        "title": "My Porfolio",
+        "description": "Full Stack Developer and Systems Engineering student with experience in designing, developing, and implementing web applications. Focused on building efficient solutions using Angular, TypeScript, Node.js, SQL Server, and cloud services."
+      },
+      "es": {
+        "title": "Mi Portafolio",
+        "description": "Desarrollador Full Stack y estudiante de Ingeniería de Sistemas con experiencia en el diseño, desarrollo e implementación de aplicaciones web. Enfocado en construir soluciones eficientes utilizando Angular, TypeScript, Node.js, SQL Server y servicios cloud."
+      }
+    }
+  }
+]
