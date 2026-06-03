@@ -14,11 +14,14 @@ export class LanguageService {
   readonly language = this._language.asReadonly();
 
   init(): void {
-    this.translate.addLangs(['en', 'es']);
-    this.translate.setFallbackLang('en');
+    if(this.platformId){
+      this.translate.addLangs(['en', 'es']);
+      this.translate.setFallbackLang('en');
 
-    const saved = this.getSavedLanguage();
-    this.setLanguage(saved);
+      const saved = this.getSavedLanguage();
+      this.setLanguage(saved);
+
+    }
   }
 
   toggle(): void {

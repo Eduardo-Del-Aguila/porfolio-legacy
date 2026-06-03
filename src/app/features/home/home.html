@@ -1,1 +1,10 @@
-<p>home works!</p>,
+<app-navbar></app-navbar>
+
+  <app-hero></app-hero>
+  <app-projects-section
+  [projects]="projectsService.projects()"
+/>
+
+<app-skills-section></app-skills-section>
+
+<app-certifications-section></app-certifications-section>

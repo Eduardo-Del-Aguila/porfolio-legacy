@@ -6,21 +6,20 @@ import { SkillsSection } from './components/skills-section/skills-section';
 import { CertificationsSection } from './components/certifications-section/certifications-section';
 import { ContactSection } from './components/contact-section/contact-section';
 import { ProjectsService } from '../../core/services/projects.service';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
-  imports: [Navbar, Hero, ProjectsSection, SkillsSection, CertificationsSection, ContactSection],
+  imports: [TranslatePipe, Navbar, Hero, ProjectsSection, SkillsSection, CertificationsSection, ContactSection],
   // imports: [Navbar, Hero, ProjectsSection, SkillsSection, CertificationsSection, ContactSection],
   templateUrl: './home.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 //Nuestro home es el smart component
-export  class Home implements OnInit {
+export  class Home {
   readonly projectsService = inject(ProjectsService);
 
+
   ngOnInit(): void {
-    this.projectsService.load();
   }
-
-
-}
+  }

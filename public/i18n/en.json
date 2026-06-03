@@ -1,0 +1,31 @@
+{
+  "navbar": {
+    "projects": "Projects",
+    "skills": "Skills",
+    "certifications": "Certifications",
+    "contact": "Contact"
+  },
+  "hero": {
+  "greeting": "Hi, I'm",
+  "name": "Eduardo Del Aguila Honorio",
+  "role": "Full Stack Developer",
+  "bio": "Short description about you, what you do and what you're passionate about.",
+  "cta_projects": "View projects",
+  "cta_contact": "Contact",
+  "photo_alt": "Profile photo",
+  "objectives_label": "Objectives",
+  "objectives": "Describe your professional objectives here.",
+  "stack_label": "Stack"
+  },
+  "skills": {
+  "label": "What I work with",
+  "title": "Skills",
+  "categories": {
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "tools": "Tools",
+    "design": "UX/UI Design",
+    "architecture": "Architecture & Patterns"
+  }
+}
+}

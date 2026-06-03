@@ -1,40 +1,90 @@
- <section id="hero" class="min-h-screen flex items-center">
-      <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
+<section id="hero" class="min-h-screen flex items-center bg-[#0A0A0A]">
+  <div class="relative h-fit w-full mx-auto flex flex-col items-center text-[#BCCBB9]">
 
-        <div class="flex-1 flex flex-col gap-6">
-          <p class="text-sm uppercase tracking-widest">
-            {{ 'hero.greeting' | translate }}
-          </p>
+    <div class="flex-1 flex flex-col md:flex-row items-end w-full px-4 py-10 bg-linear-to-b from-[#0A0A0A] to-[#1b1b1b] ">
 
-          <h1 class="text-5xl font-bold">
-            {{ 'hero.name' | translate }}
-          </h1>
-
-          <h2 class="text-2xl font-medium">
+      <div #greeting class="border-2 rounded-2xl border-green-600/30 py-10 px-5  flex-2 flex flex-col justify-end items-center gap-4 text-sm uppercase tracking-widest mx-auto max-w-2xl">
+        <p  class="w-full text-start text-sm uppercase tracking-widest">
+          {{ 'hero.greeting' | translate }}
+        </p>
+        <h1 class="text-lg md:text-3xl lg:text-5xl font-bold">
+          {{ 'hero.name' | translate }}
+        </h1>
+        <div class="text-start w-full">
+          <h2 class="text-lg lg:text-2xl font-medium">
             {{ 'hero.role' | translate }}
           </h2>
+        </div>
+      </div>
 
-          <p class="text-base leading-relaxed max-w-md">
-            {{ 'hero.bio' | translate }}
+      <div class="md:flex flex-1 hidden max-w-80  justify-center items-end relative z-10">
+        <div #photo class="w-60 h-60 lg:w-80 lg:h-80 rounded-full bg-[#202020] p-6 translate-y-50 border border-black/70">
+          <img
+            src="/assets/img/photo-perfil-job.jpg"
+            alt="{{ 'hero.photo_alt' | translate }}"
+            class="w-full h-full rounded-full object-cover"
+          />
+        </div>
+      </div>
+
+      <div #aboutLabel class="border-2 rounded-2xl border-green-600/30 py-10 px-5 flex-2 flex flex-col justify-end items-center gap-4 text-sm tracking-widest mx-auto max-w-2xl">
+        <h2  class="w-full text-start text-3xl justify-start uppercase font-bold">
+          {{ 'hero.about_label' | translate }}
+        </h2>
+        <p class="text-sm lg:text-base leading-relaxed">
+          {{ 'hero.bio' | translate }}
+        </p>
+        <div class="flex gap-4 w-full justify-end">
+          <a routerLink="" class="px-6 py-3 border-3 hover:bg-[#0A0A0A] hover:text-[#22C55E] bg-[#22C55E] text-[#0A0A0A] rounded-lg">
+            {{ 'hero.cta_projects' | translate }}
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PARTE INFERIOR -->
+
+
+    <div #bottom class="flex-2 flex flex-col lg:flex lg:flex-row bg-[#202020] w-full z-0 px-4 py-8 text-[#BCCBB9] bg-linear-to-b  from-[#1b1b1b] to-[#0A0A0A]">
+
+        <div #objectives class="border-2 rounded-2xl border-green-600/30 py-10 px-5 flex-2 flex text-start mx-auto max-w-2xl flex-col gap-4 ">
+          <h3 class="text-lg uppercase tracking-widest font-bold">
+            {{ 'hero.objectives_label' | translate }}
+          </h3>
+          <hr class="-mt-4 flex  ">
+
+          <p class="text-sm leading-relaxed">
+            {{ 'hero.objectives' | translate }}
           </p>
+        </div>
 
-          <div class="flex gap-4">
-            <a href="#projects">
-              {{ 'hero.cta_projects' | translate }}
-            </a>
-            <a href="#contact">
-              {{ 'hero.cta_contact' | translate }}
-            </a>
+        <div  class="w-60 lg:w-80 "></div>
+
+        <div #stackSection class="border-2 rounded-2xl mx-auto max-w-2xl border-green-600/30 py-10 px-5 flex-2 flex flex-col gap-4">
+          <h3 class="text-lg uppercase tracking-widest font-bold">
+            {{ 'hero.stack_label' | translate }}
+          </h3>
+          <hr class="-mt-4 flex  ">
+          <div class="grid grid-cols-2 gap-5">
+            @for (skill of stack; track skill.name) {
+              <div class="flex flex-col gap-1">
+                <div class="flex justify-between text-md">
+                  <span>{{ skill.name }}</span>
+                  <span class="opacity-70">{{ skill.level }}%</span>
+                </div>
+                <div class="w-full h-2 bg-black/10 rounded-full">
+                  <div
+                    class="h-2 bg-[#4BE277] rounded-full hover:ring-2 hover:ring-[#1f7a39] "
+                    [style.width.%]="skill.level"
+                  ></div>
+                </div>
+              </div>
+            }
           </div>
         </div>
 
-        <div class="flex-shrink-0">
-          <img
-            src="/assets/images/profile.jpg"
-            alt="{{ 'hero.photo_alt' | translate }}"
-            class="w-64 h-64 rounded-full object-cover"
-          />
-        </div>
+    </div>
 
-      </div>
-    </section>
+  </div>
+</section>
