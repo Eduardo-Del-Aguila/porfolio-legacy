@@ -8,3 +8,27 @@
 h1, h2, h3, h4 {
   font-family: 'Geist', sans-serif;
 }
+
+@layer utilities {
+  .category-label::after {
+    content: '';
+    display: block;
+    margin-top: 4px;
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: background 0.2s ease;
+  }
+  .category-label:hover::after {
+    background: rgba(255, 255, 255, 0.35);
+  }
+
+  .skill-icon--lit {
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.15),
+      0 0 16px 2px rgba(255, 255, 255, 0.08),
+      0 0 32px 4px rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.06);
+  }
+}

@@ -1,4 +1,4 @@
-    <section id="skills" class="py-24 bg-[#0A0A0A]">
+    <section #skills class="py-24 bg-[#0A0A0A]">
       <div class="max-w-5xl mx-auto px-6">
 
         <div #sectionHeader class="flex flex-col gap-2 mb-16">
@@ -10,7 +10,7 @@
           </h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div  class="justify-center items-center grid grid-cols-1 md:grid-cols-2 gap-8">
           @for (category of categories; track category.key) {
             <div #categoryCard class="flex flex-col gap-4 p-6 rounded-2xl border border-white/10 bg-[#1F2937]">
 
@@ -20,12 +20,21 @@
                 </h3>
               </div>
 
-              <div class="flex flex-wrap gap-2">
+                <div
+                  cdkDropList
+                  [id]="'list-' + category.key"
+                  #doneList="cdkDropList"
+                  [cdkDropListData]="category.skills"
+                  [cdkDropListConnectedTo]="getConnectedLists(category.key)"
+                  class="example-list flex justify-around"
+                  (cdkDropListDropped)="drop($event)"
+                >
                 @for (skill of category.skills; track skill.name) {
 
-                  <span class="skill-badge rounded-full
-                           cursor-default transition-all duration-300"
+                  <span #iconEls class="skill-badge rounded-full
+                    cursor-default transition-all duration-300"
                     [attr.data-color]="skill.color"
+                    cdkDrag
                     (mouseenter)="onHover($event, skill.color)"
                     (mouseleave)="onLeave($event)" [innerHTML]="skill.icon"></span>
                 }
@@ -37,3 +46,40 @@
 
       </div>
     </section>
+
+<!-- <section
+  #container
+  class="relative w-full min-h-dvh overflow-hidden bg-[#0a0a0a]"
+>
+
+  @for (category of categories; track category.key; let ci = $index) {
+
+    <span
+      class="category-label absolute font-mono text-[0.65rem] font-bold tracking-[0.18em] text-white/25 cursor-default select-none z-10 hover:text-white/70 transition-colors duration-200"
+      [style.left.px]="getLabelPosition(ci).x"
+      [style.top.px]="getLabelPosition(ci).y"
+      (mouseenter)="hoveredCategory.set(category.key)"
+      (mouseleave)="hoveredCategory.set(null)"
+    >
+      {{ category.key | uppercase }}
+    </span>
+
+    @for (skill of category.skills; track skill.name; let si = $index) {
+      <div
+        class="skill-icon absolute w-13 h-13 flex items-center justify-center cursor-grab active:cursor-grabbing rounded-[10px] border border-white/30 bg-white/15 transition-[box-shadow,border-color,background] duration-300"
+        [class.skill-icon--lit]="hoveredCategory() === category.key"
+        [style.left.px]="getInitialPosition(ci, si).x"
+        [style.top.px]="getInitialPosition(ci, si).y"
+        [style.color]="skill.color"
+        [attr.data-category]="category.key"
+      >
+        <span class="[&_svg]:w-7 [&_svg]:h-7 [&_svg]:block" [innerHTML]="skill.icon"></span>
+      </div>
+    }
+
+  }
+
+</section> -->
+
+
+

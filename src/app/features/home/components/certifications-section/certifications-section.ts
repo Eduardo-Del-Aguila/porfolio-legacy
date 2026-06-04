@@ -2,7 +2,7 @@ import { afterNextRender, ChangeDetectionStrategy, Component, ElementRef, inject
 import { isPlatformBrowser } from '@angular/common';
 import { gsap } from 'gsap';
 import { Draggable } from 'gsap/Draggable';
-// import { InertiaPlugin } from 'gsap/InertiaPlugin';
+import { InertiaPlugin } from 'gsap/InertiaPlugin';
 @Component({
   selector: 'app-certifications-section',
   imports: [],
@@ -26,9 +26,8 @@ export class CertificationsSection {
       gsap.registerPlugin(Draggable, InertiaPlugin);
 
       Draggable.create(this.flair().nativeElement, {
-        type: "x",
         bounds: this.container().nativeElement,
-        // inertia: true
+        inertia: true
       });
 
     });
