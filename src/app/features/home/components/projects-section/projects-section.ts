@@ -6,6 +6,7 @@ import { isPlatformBrowser } from '@angular/common';
 
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-projects-section',
@@ -20,18 +21,21 @@ export class ProjectsSection {
   readonly cardWrappers = viewChildren<ElementRef>('cardWrapper');
   readonly sectionHeader = viewChildren<ElementRef>('sectionHeader');
 
+
   constructor() {
     afterNextRender(() => {
       gsap.registerPlugin(ScrollTrigger);
 
-      gsap.from(this.sectionHeader()[0]?.nativeElement, {
-        opacity: 0,
-        y: 30,
-        duration: 0.6,
+      gsap.to(this.sectionHeader()[0]?.nativeElement, {
+        opacity: 1,
+        y: 0,
+        duration: 1.5,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: this.sectionHeader()[0]?.nativeElement,
-          start: 'top 85%',
+          start: 'top 105%',
+          toggleActions: 'play none none reset',
+          // markers: {startColor:"green", endColor:"red", fontSize:"12px"}
         },
       });
 
@@ -40,12 +44,14 @@ export class ProjectsSection {
         {
           opacity: 0,
           y: 50,
-          duration: 0.6,
+          duration: 1.5,
           ease: 'power3.out',
           stagger: 0.15,
           scrollTrigger: {
             trigger: this.cardWrappers()[0]?.nativeElement,
-            start: 'top 85%',
+            start: 'top 105%',
+            toggleActions: 'play none none reset',
+            markers: {startColor:"yellow", endColor:"blue", fontSize:"12px"}
           },
         }
       );

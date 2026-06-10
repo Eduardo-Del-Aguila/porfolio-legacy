@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, PLATFORM_ID, viewChild } from '@angular/core';
+import { afterNextRender, AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, PLATFORM_ID, viewChild } from '@angular/core';
 import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 import { RouterLink } from "@angular/router";
 import { isPlatformBrowser } from '@angular/common';
@@ -10,9 +10,10 @@ import { gsap } from 'gsap';
   selector: 'app-hero',
   imports: [TranslatePipe, TranslateDirective, RouterLink],
   templateUrl: './hero.html',
+  styleUrl: './hero.css'
   // changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Hero implements AfterViewInit {
+export class Hero {
 
   private readonly platformId = inject(PLATFORM_ID);
 
@@ -30,16 +31,46 @@ export class Hero implements AfterViewInit {
     { name: 'Docker', level: 60 },
   ];
 
-  ngAfterViewInit(): void {
-    if (!isPlatformBrowser(this.platformId)) return;
 
-    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+readonly card = viewChild.required<ElementRef>('card');
 
+onMouseMove(event: MouseEvent) {
+  const el = this.card().nativeElement;
+  const rect = el.getBoundingClientRect();
 
-    tl
-      .from(this.greeting()?.nativeElement, { opacity: 0, x: -70, duration: 1 })
-      .from(this.aboutLabel()?.nativeElement, { opacity: 0, x: 70, duration: 1 }, '<')
-      .from(this.photo()?.nativeElement, { opacity: 0, scale: 0.3, duration: 0.7 }, '-=0.4')
-      .from(this.bottom()?.nativeElement, { opacity: 0, y: 30, duration: 1 }, '-=0.2');
+  const x = (event.clientX - rect.left) / rect.width - 0.5;
+  const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+  const intensity = 30;
+
+  gsap.to(el, {
+    rotateX: -y * intensity,
+    rotateY:  x * intensity,
+    transformPerspective: 500,
+    ease: 'power3.out',
+    duration: 0.3,
+  });
+}
+
+  onMouseLeave(event: MouseEvent) {
+    const el = this.card().nativeElement;
+
+    gsap.to(el, {
+      rotateX: 0,
+      rotateY: 0,
+      ease: 'power2.out',
+      duration: 0.5,
+    });
+  }
+  constructor() {
+    afterNextRender(() => {
+      const tl = gsap.timeline({
+      });
+
+      tl
+        .fromTo(this.greeting()!.nativeElement,   {opacity:0, x:-100 },{ opacity: 1, x: 0 }, 'somelabel+=0.5')
+        .fromTo(this.aboutLabel()!.nativeElement, {opacity:0, x: 100 },{ opacity: 1, x: 0 },'somelabel+=0.5')
+        .fromTo(this.bottom()!.nativeElement,     {opacity:0, y: 40 },{ opacity: 1, y: 0 },'+=0.5');
+    });
   }
 }

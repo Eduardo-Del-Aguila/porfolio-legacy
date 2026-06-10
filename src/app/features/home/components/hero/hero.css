@@ -1,0 +1,22 @@
+.card {
+  position: relative;
+  overflow: hidden;
+  transition: all .2s ease;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle 80px at var(--x) var(--y),
+      rgba(0,0,0,.18),
+      rgba(0,0,0,.08) 40%,
+      transparent 100%
+    );
+
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}

@@ -7,11 +7,10 @@ import { CertificationsSection } from './components/certifications-section/certi
 import { ContactSection } from './components/contact-section/contact-section';
 import { ProjectsService } from '../../core/services/projects.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { SkillsV2 } from "./components/skills-v2/skills-v2";
 
 @Component({
   selector: 'app-home',
-  imports: [TranslatePipe, Navbar, Hero, ProjectsSection, SkillsSection, CertificationsSection, ContactSection, SkillsV2],
+  imports: [TranslatePipe, Navbar, Hero, ProjectsSection, SkillsSection, CertificationsSection, ContactSection],
   // imports: [Navbar, Hero, ProjectsSection, SkillsSection, CertificationsSection, ContactSection],
   templateUrl: './home.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

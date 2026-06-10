@@ -1,9 +1,11 @@
 <section id="hero" class="min-h-screen flex items-center bg-[#0A0A0A]">
-  <div class="relative h-fit w-full mx-auto flex flex-col items-center text-[#BCCBB9]">
+  <div class="relative h-fit w-full mx-auto flex flex-col items-center text-[rgb(188,203,185)]">
 
     <div class="flex-1 flex flex-col md:flex-row items-end w-full px-4 py-10 bg-linear-to-b from-[#0A0A0A] to-[#1b1b1b] ">
 
-      <div #greeting class="border-2 rounded-2xl border-green-600/30 py-10 px-5  flex-2 flex flex-col justify-end items-center gap-4 text-sm uppercase tracking-widest mx-auto max-w-2xl">
+      <div #greeting class="border-2 rounded-2xl border-green-600/30 py-10 px-5 flex-2 flex flex-col justify-end items-center gap-4 text-sm uppercase tracking-widest mx-auto max-w-2xl shadow-lg
+         hover:shadow-[inset_10px_10px_30px_rgb(96,206,74)]
+         transition-shadow duration-300 opacity-0">
         <p  class="w-full text-start text-sm uppercase tracking-widest">
           {{ 'hero.greeting' | translate }}
         </p>
@@ -18,8 +20,16 @@
       </div>
 
       <div class="md:flex flex-1 hidden max-w-80  justify-center items-end relative z-10">
-        <div #photo class="w-60 h-60 lg:w-80 lg:h-80 rounded-full bg-[#202020] p-6 translate-y-50 border border-black/70">
+          <div
+            class="card w-60 h-60  lg:w-80 lg:h-80 rounded-full bg-[#202020] p-6 translate-y-50 border border-black/70"
+            #card
+            (mousemove)="onMouseMove($event)"
+            (mouseleave)="onMouseLeave($event)"
+            style="transform-style: preserve-3d; will-change: transform;"
+          >
           <img
+          #card
+
             src="/assets/img/photo-perfil-job.jpg"
             alt="{{ 'hero.photo_alt' | translate }}"
             class="w-full h-full rounded-full object-cover"
@@ -27,7 +37,9 @@
         </div>
       </div>
 
-      <div #aboutLabel class="border-2 rounded-2xl border-green-600/30 py-10 px-5 flex-2 flex flex-col justify-end items-center gap-4 text-sm tracking-widest mx-auto max-w-2xl">
+      <div #aboutLabel class="border-2 rounded-2xl border-green-600/30 py-10 px-5 flex-2 flex flex-col justify-end items-center gap-4 text-sm tracking-widest mx-auto max-w-2xl shadow-lg
+         hover:shadow-[inset_-10px_10px_30px_rgb(96,206,74)]
+         transition-shadow duration-300 opacity-0">
         <h2  class="w-full text-start text-3xl justify-start uppercase font-bold">
           {{ 'hero.about_label' | translate }}
         </h2>
@@ -48,8 +60,10 @@
 
     <div #bottom class="flex-2 flex flex-col lg:flex lg:flex-row bg-[#202020] w-full z-0 px-4 py-8 text-[#BCCBB9] bg-linear-to-b  from-[#1b1b1b] to-[#0A0A0A]">
 
-        <div #objectives class="border-2 rounded-2xl border-green-600/30 py-10 px-5 flex-2 flex text-start mx-auto max-w-2xl flex-col gap-4 ">
-          <h3 class="text-lg uppercase tracking-widest font-bold">
+        <div #objectives class="border-2 rounded-2xl border-green-600/30 py-10 px-5 flex-2 flex text-start mx-auto max-w-2xl flex-col gap-4 shadow-lg
+         hover:shadow-[inset_10px_-10px_30px_rgb(96,206,74)]
+         transition-all duration-300">
+          <h3 class="text-lg uppercase tracking-widest font-bold ">
             {{ 'hero.objectives_label' | translate }}
           </h3>
           <hr class="-mt-4 flex  ">
@@ -61,7 +75,9 @@
 
         <div  class="w-60 lg:w-80 "></div>
 
-        <div #stackSection class="border-2 rounded-2xl mx-auto max-w-2xl border-green-600/30 py-10 px-5 flex-2 flex flex-col gap-4">
+        <div #stackSection class="border-2 rounded-2xl mx-auto max-w-2xl border-green-600/30 py-10 px-5 flex-2 flex flex-col gap-4 shadow-lg
+         hover:shadow-[inset_-10px_-10px_30px_rgb(96,206,74)]
+         transition-all duration-300">
           <h3 class="text-lg uppercase tracking-widest font-bold">
             {{ 'hero.stack_label' | translate }}
           </h3>
