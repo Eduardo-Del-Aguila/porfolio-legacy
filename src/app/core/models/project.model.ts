@@ -3,8 +3,9 @@ export interface Project {
   liveUrl: string;
   image: string;
   languages: string[];
-  readmeUrl: string;
-  translations: {     
+  readmeUrl?: string;
+  readme? : string;
+  translations: {
     en: ProjectTranslation;
     es: ProjectTranslation;
   };

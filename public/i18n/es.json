@@ -35,7 +35,13 @@
     "design": "Diseño UX/UI",
     "architecture": "Arquitectura & Patrones",
     "devops": "DevOps & Cloud"
+    }
+  },
+  "detail": {
+    "back": "Volver al inicio",
+    "live": "Ver sitio en vivo",
+    "not_found": "Proyecto no encontrado"
   }
-}
+
 
 }

@@ -10,23 +10,47 @@ export class ProjectsService {
 
 
 private readonly _projects = signal<Project[]>([
-  {
-    slug: 'ecommerce-angular',
-    liveUrl: 'https://ecommerce-angular.netlify.app',
-    image: '/assets/projects/ecommerce-angular.png',
-    languages: ['Angular', 'TypeScript', 'Tailwind CSS'],
-    readmeUrl: 'https://raw.githubusercontent.com/tuuser/ecommerce-angular/main/README.md',
-    translations: {
-      en: {
-        title: 'Angular Ecommerce',
-        description: 'A full ecommerce app built with Angular and Tailwind CSS.',
-      },
-      es: {
-        title: 'Ecommerce Angular',
-        description: 'Aplicación de ecommerce construida con Angular y Tailwind CSS.',
-      },
+{
+  slug: 'superaxion-ui',
+  liveUrl: 'https://superaxiongroup.com/#/layout',
+  image: '/assets/img/superaxion.png',
+  languages: ['Angular', 'TypeScript', 'RxJS', 'TailwindCSS', 'CPanel'],
+  readme: `
+# SuperaxionUi01
+
+A professional landing page developed for a psychologist, designed to help patients connect quickly and easily.
+
+## ✨ Features
+
+* Professional profile and specialties presentation
+* Direct contact through a WhatsApp button
+* Location and availability information
+* Fully responsive design for mobile and desktop devices
+
+## 🛠️ Technologies
+
+* Angular 21 · RxJS · TypeScript · CSS
+
+## 🏗️ Architecture
+
+Client-Side Rendering (CSR) with a modular architecture based on components, services, interfaces, and pipes.
+
+## 🚀 Deployment
+
+Deployed on cPanel.
+
+  `,
+  translations: {
+    es: {
+      title: 'Superaxion — Landing Page',
+      description: 'Landing page para psicólogo con contacto vía WhatsApp y presentación de especialidades.',
+    },
+    en: {
+      title: 'Superaxion — Landing Page',
+      description: 'Landing page for a psychologist with WhatsApp contact and specialties showcase.',
     },
   },
+},
   {
     slug: 'task-manager',
     liveUrl: 'https://task-manager.netlify.app',

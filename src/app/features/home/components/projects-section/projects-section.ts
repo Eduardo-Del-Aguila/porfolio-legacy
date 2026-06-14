@@ -1,4 +1,4 @@
-import { afterNextRender, AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, input, PLATFORM_ID, viewChildren } from '@angular/core';
+import { afterNextRender, AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, input, PLATFORM_ID, viewChild, viewChildren } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Project } from '../../../../core/models/project.model';
 import { ProjectCard } from "../../../../shared/components/project-card/project-card";
@@ -7,10 +7,11 @@ import { isPlatformBrowser } from '@angular/common';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Router } from '@angular/router';
+import { ProjectCardSpecial } from "../../../../shared/components/project-card-special/project-card-special";
 
 @Component({
   selector: 'app-projects-section',
-  imports: [TranslatePipe, ProjectCard],
+  imports: [TranslatePipe, ProjectCard, ProjectCardSpecial],
   templateUrl: './projects-section.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -21,10 +22,18 @@ export class ProjectsSection {
   readonly cardWrappers = viewChildren<ElementRef>('cardWrapper');
   readonly sectionHeader = viewChildren<ElementRef>('sectionHeader');
 
+  readonly pinContainer = viewChild<ElementRef>('pinContainer');
+  // readonly sectionHeader = viewChild<ElementRef>('sectionHeader');
+  readonly track = viewChild<ElementRef>('track');
+
 
   constructor() {
     afterNextRender(() => {
       gsap.registerPlugin(ScrollTrigger);
+
+      const pin = this.pinContainer()!.nativeElement;
+      const track = this.track()!.nativeElement;
+      // const header = this.sectionHeader()!.nativeElement;
 
       gsap.to(this.sectionHeader()[0]?.nativeElement, {
         opacity: 1,
@@ -35,7 +44,22 @@ export class ProjectsSection {
           trigger: this.sectionHeader()[0]?.nativeElement,
           start: 'top 105%',
           toggleActions: 'play none none reset',
-          // markers: {startColor:"green", endColor:"red", fontSize:"12px"}
+        },
+      });
+
+      const trackWidth = track.scrollWidth - window.innerWidth;
+
+      gsap.to(track, {
+        x: () => -trackWidth,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: pin,
+          start: 'top top',
+          end: () => `+=${trackWidth}`,
+          pin: true,
+          scrub: 1,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
         },
       });
 
@@ -51,7 +75,6 @@ export class ProjectsSection {
             trigger: this.cardWrappers()[0]?.nativeElement,
             start: 'top 105%',
             toggleActions: 'play none none reset',
-            markers: {startColor:"yellow", endColor:"blue", fontSize:"12px"}
           },
         }
       );

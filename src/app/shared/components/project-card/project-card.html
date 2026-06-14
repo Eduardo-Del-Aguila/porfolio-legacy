@@ -1,4 +1,4 @@
- <div class="flex flex-col rounded-2xl overflow-hidden bg-[#1F2937] hover:scale-[1.02] transition-transform duration-300">
+ <!-- <div class="border border-red-500 flex flex-col rounded-2xl overflow-hidden bg-[#1F2937] hover:scale-[1.02] transition-transform duration-300">
 
       <div class="relative overflow-hidden h-48">
         <img
@@ -44,4 +44,46 @@
         </div>
 
       </div>
+  </div>
+ -->
+
+<div class=" project-item shrink w-[85vw] md:w-[55vw] lg:w-[45vw] flex flex-col pt-0 rounded-2xl overflow-hidden">
+  <div class="relative overflow-hidden">
+    <div class="w-full h-full absolute bg-black/30" ></div>
+    <img
+      [src]="project().image"
+      [alt]="project().translations[lang()].title"
+      class="w-full h-full object-cover"
+    />
+    <h3 class="absolute z-100 bottom-1.5 p-10 text-white font-semibold text-5xl leading-tight">
+      {{ project().translations[lang()].title }}
+    </h3>
+  </div>
+
+ <div class="px-5">
+  <hr class="text-gray-400  w-full my-5 hover:border transition-all duration-700 ease-in">
+
+  <div class="flex items-center justify-between ">
+
+    <div class="group flex gap-4 text-2xl text-white  py-3 justify-center items-center cursor-pointer">
+      <div class="group-hover:bg-gray-500 group-hover:rotate-10 transition-all duration-300 ease-out rounded-full border-gray-700 border p-3 ">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+        	<path d="M0 0h24v24H0z" fill="none" />
+        	<path fill="currentColor" d="M15.728 3.884c1.434-1.44 3.532-1.47 4.694-.304c1.164 1.168 1.132 3.28-.303 4.72l-2.424 2.433a.75.75 0 0 0 1.063 1.059l2.424-2.433c1.91-1.919 2.15-4.982.303-6.838c-1.85-1.857-4.907-1.615-6.82.304L9.818 7.692c-1.912 1.919-2.152 4.982-.303 6.837a.75.75 0 1 0 1.062-1.058c-1.163-1.168-1.132-3.28.303-4.72z" />
+        	<path fill="currentColor" d="M14.485 9.47a.75.75 0 0 0-1.063 1.06c1.164 1.168 1.132 3.279-.303 4.72L8.27 20.116c-1.434 1.44-3.532 1.47-4.694.304c-1.163-1.168-1.132-3.28.303-4.72l2.424-2.433a.75.75 0 1 0-1.062-1.059l-2.424 2.433C.906 16.56.666 19.623 2.515 21.48c1.85 1.858 4.907 1.615 6.819-.304l4.848-4.867c1.91-1.918 2.15-4.982.303-6.837" opacity=".5" />
+        </svg>
+      </div>
+
+      <button [routerLink]="['/projects', project().slug]" class=" text-center truncate cursor-pointer flex flex-col"> {{ 'projects.card.detail' | translate }} <span class="group-hover:w-full border-b w-0 transition-all duration-300 ease-out "></span></button>
     </div>
+
+    <div class="flex wrap-normal gap-5 ">
+          @for (tech of project().languages; track tech) {
+            <span class="text-xs px-3 py-1 rounded-full bg-[#2d2d2d] text-[#46a267]">
+              {{ tech }}
+            </span>
+          }
+    </div>
+  </div>
+ </div>
+</div>
