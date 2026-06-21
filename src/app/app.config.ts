@@ -20,7 +20,7 @@ export const appConfig: ApplicationConfig = {
     // provideClientHydration(withEventReplay()),
     //para desarrollo usaré esta
     // provideHttpClient(),
-    // provideHttpClient(withFetch(), withInterceptorsFromDi()),
+    provideHttpClient(withFetch()),
     provideMarkdown(),
     provideTranslateService(
       {

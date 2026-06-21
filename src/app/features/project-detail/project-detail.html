@@ -11,20 +11,21 @@
 
           <div class="w-full h-72 rounded-2xl overflow-hidden mb-10">
             <img
+              #heroImage
               [src]="project()!.image"
               [alt]="project()!.translations[lang()].title"
-              class="w-full h-full object-cover"
+              class="w-full h-full object-cover opacity-0 scale-0"
             />
           </div>
 
           <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
             <div class="flex flex-col gap-3">
-              <h1 class="text-4xl font-bold text-white">
+              <h1 #title class="text-4xl font-bold text-white opacity-0 translate-y-5">
                 {{ project()!.translations[lang()].title }}
               </h1>
-              <div class="flex flex-wrap gap-2">
+              <div #techContainer class="flex flex-wrap gap-2">
                 @for (tech of project()!.languages; track tech) {
-                  <span class="text-xs px-3 py-1 rounded-full bg-[#1F2937] text-[#4ADE80]">
+                  <span #techItem class="text-xl font-extralight px-3 py-1 rounded-full bg-[#1F2937] text-[#4ADE80] opacity-0 -translate-y-5">
                     {{ tech }}
                   </span>
                 }
@@ -32,7 +33,7 @@
             </div>
 
 
-            <a [href]="project()!.liveUrl"
+            <a #liveButton [href]="project()!.liveUrl"
               target="_blank"
               class="shrink-0 px-6 py-3 bg-[#22C55E] text-[#0A0A0A] font-medium rounded-lg hover:bg-[#4ADE80] transition-colors text-sm"
             >
@@ -40,9 +41,9 @@
             </a>
           </div>
 
-          <hr class="border-white/10 mb-10" />
+          <hr   class="border-white/10 mb-10" />
 
-           <div class=" border border-green-400 p-10 rounded-2xl shadow-[inset_5px_5px_20px_rgb(96,146,74)]">
+           <div  class=" border border-green-400 p-10 rounded-2xl shadow-[inset_5px_5px_20px_rgb(96,146,74)]">
              <markdown
               [data]="project()!.readme!"
               class="prose prose-invert prose-green max-w-none"

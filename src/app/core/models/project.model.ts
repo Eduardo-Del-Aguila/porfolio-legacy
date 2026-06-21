@@ -5,6 +5,7 @@ export interface Project {
   languages: string[];
   readmeUrl?: string;
   readme? : string;
+  yearCreatin: string;
   translations: {
     en: ProjectTranslation;
     es: ProjectTranslation;
@@ -14,4 +15,5 @@ export interface Project {
 export interface ProjectTranslation {
   title: string;
   description: string;
+  year: string;
 }

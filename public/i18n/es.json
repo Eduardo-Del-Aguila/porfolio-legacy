@@ -1,16 +1,16 @@
 {
   "navbar": {
-    "projects": "Proyectos",
-    "skills": "Skills",
-    "certifications": "Certificaciones",
+    "home": "Inicio",
+    "skills": "Lenguajes",
+    "experience": "Experiencia",
     "contact": "Contacto"
   },
   "hero": {
   "greeting": "Hola, soy",
-  "name": "Eduardo Del Aguila Honorio",
+  "name": "Eduardo Del Aguila",
   "role": "Full Stack Developer",
   "bio": "Estudiante de ultimos ciclos de la carreara de Ingenieria de sistemas de la información. Futuro google expert developer ;)",
-  "cta_projects": "Ver proyectos",
+  "cta_cv": "Descargar CV",
   "photo_alt": "Foto de perfil",
   "about_label": "Sobre mí",
   "objectives_label": "Objetivos",
@@ -41,7 +41,16 @@
     "back": "Volver al inicio",
     "live": "Ver sitio en vivo",
     "not_found": "Proyecto no encontrado"
-  }
-
-
+  },
+"footer": {
+  "role": "Full Stack Developer",
+  "follow": "Encuéntrame en",
+  "local_time": "Hora local",
+  "rights": "Todos los derechos reservados.",
+  "built_with": "Hecho con Angular <3"
+},
+"experience": {
+  "label": "Trayectoria",
+  "title": "Experiencia"
+}
 }

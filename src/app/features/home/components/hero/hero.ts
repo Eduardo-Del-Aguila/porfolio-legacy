@@ -1,9 +1,10 @@
-import { afterNextRender, AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, PLATFORM_ID, viewChild } from '@angular/core';
+import { afterNextRender, AfterViewInit, ChangeDetectionStrategy, Component, computed, ElementRef, inject, PLATFORM_ID, signal, viewChild } from '@angular/core';
 import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 import { RouterLink } from "@angular/router";
 import { isPlatformBrowser } from '@angular/common';
 
 import { gsap } from 'gsap';
+import { LanguageService } from '../../../../core/services/language.service';
 
 
 @Component({
@@ -14,45 +15,35 @@ import { gsap } from 'gsap';
   // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Hero {
+  readonly card = viewChild.required<ElementRef>('card');
+  readonly content = viewChild<ElementRef>('content');
+  readonly bio = viewChild<ElementRef>('bio');
 
-  private readonly platformId = inject(PLATFORM_ID);
-
-   greeting = viewChild<ElementRef>('greeting');
-   photo = viewChild<ElementRef>('photo');
-   aboutLabel = viewChild<ElementRef>('aboutLabel');
-   bottom = viewChild<ElementRef>('bottom');
-   stackSection = viewChild<ElementRef>('stackSection');
-
-  stack = [
-    { name: 'C#', level: 85 },
-    { name: 'Angular', level: 80 },
-    { name: 'PostgreSQL', level: 75 },
-    { name: 'Tailwind CSS', level: 90 },
-    { name: 'Docker', level: 60 },
-  ];
+  private readonly languageService = inject(LanguageService);
+  readonly lang = this.languageService.language;
 
 
-readonly card = viewChild.required<ElementRef>('card');
 
-onMouseMove(event: MouseEvent) {
-  const el = this.card().nativeElement;
-  const rect = el.getBoundingClientRect();
 
-  const x = (event.clientX - rect.left) / rect.width - 0.5;
-  const y = (event.clientY - rect.top) / rect.height - 0.5;
+  onMouseMove(event: MouseEvent) {
+    const el = this.card().nativeElement;
+    const rect = el.getBoundingClientRect();
 
-  const intensity = 30;
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
 
-  gsap.to(el, {
-    rotateX: -y * intensity,
-    rotateY:  x * intensity,
-    transformPerspective: 500,
-    ease: 'power3.out',
-    duration: 0.3,
-  });
-}
+    const intensity = 30;
 
-  onMouseLeave(event: MouseEvent) {
+    gsap.to(el, {
+      rotateX: -y * intensity,
+      rotateY: x * intensity,
+      transformPerspective: 500,
+      ease: 'power3.out',
+      duration: 0.3,
+    });
+  }
+
+  onMouseLeave() {
     const el = this.card().nativeElement;
 
     gsap.to(el, {
@@ -62,15 +53,39 @@ onMouseMove(event: MouseEvent) {
       duration: 0.5,
     });
   }
+
+  readonly bioWords = computed(() => {
+    let text;
+    if(this.lang() == 'en'){
+      text = 'Estudiante de ultimos ciclos de la carreara de Ingenieria de sistemas de la información. Futuro google expert developer ;)'.split(' ');
+    } else {
+      text = 'Estudiante de ultimos cliclos en ingles IM HERE ;)'.split(' ');
+
+    }
+    // esto lo resuelve mejor el translate service, pero como ejemplo:
+    return text;
+  });
+
+
   constructor() {
     afterNextRender(() => {
-      const tl = gsap.timeline({
-      });
+
+      const tl = gsap.timeline();
 
       tl
-        .fromTo(this.greeting()!.nativeElement,   {opacity:0, x:-100 },{ opacity: 1, x: 0 }, 'somelabel+=0.5')
-        .fromTo(this.aboutLabel()!.nativeElement, {opacity:0, x: 100 },{ opacity: 1, x: 0 },'somelabel+=0.5')
-        .fromTo(this.bottom()!.nativeElement,     {opacity:0, y: 40 },{ opacity: 1, y: 0 },'+=0.5');
+      .fromTo(this.card().nativeElement, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.7, ease: 'power3.out' })
+      .fromTo(this.content()!.nativeElement, { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.7, ease: 'power3.out' }, '-=0.4');
+
+    const words = this.bio()!.nativeElement.querySelectorAll('span');
+
+    tl.from(words, {
+      opacity: 0,
+      y: 20,
+      duration: 0.5,
+      ease: 'power3.out',
+      stagger: 0.03,
+    }, '-=0.2');
     });
+
   }
 }

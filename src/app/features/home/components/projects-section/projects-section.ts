@@ -7,11 +7,10 @@ import { isPlatformBrowser } from '@angular/common';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Router } from '@angular/router';
-import { ProjectCardSpecial } from "../../../../shared/components/project-card-special/project-card-special";
 
 @Component({
   selector: 'app-projects-section',
-  imports: [TranslatePipe, ProjectCard, ProjectCardSpecial],
+  imports: [TranslatePipe, ProjectCard],
   templateUrl: './projects-section.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -19,11 +18,9 @@ export class ProjectsSection {
   private readonly platformId = inject(PLATFORM_ID);
 
   readonly projects = input<Project[]>();
-  readonly cardWrappers = viewChildren<ElementRef>('cardWrapper');
   readonly sectionHeader = viewChildren<ElementRef>('sectionHeader');
 
   readonly pinContainer = viewChild<ElementRef>('pinContainer');
-  // readonly sectionHeader = viewChild<ElementRef>('sectionHeader');
   readonly track = viewChild<ElementRef>('track');
 
 
@@ -33,7 +30,6 @@ export class ProjectsSection {
 
       const pin = this.pinContainer()!.nativeElement;
       const track = this.track()!.nativeElement;
-      // const header = this.sectionHeader()!.nativeElement;
 
       gsap.to(this.sectionHeader()[0]?.nativeElement, {
         opacity: 1,
@@ -47,7 +43,7 @@ export class ProjectsSection {
         },
       });
 
-      const trackWidth = track.scrollWidth - window.innerWidth;
+      const trackWidth = track.scrollWidth - window.innerWidth - 60;
 
       gsap.to(track, {
         x: () => -trackWidth,
@@ -63,21 +59,21 @@ export class ProjectsSection {
         },
       });
 
-      gsap.from(
-        this.cardWrappers().map(c => c.nativeElement),
-        {
-          opacity: 0,
-          y: 50,
-          duration: 1.5,
-          ease: 'power3.out',
-          stagger: 0.15,
-          scrollTrigger: {
-            trigger: this.cardWrappers()[0]?.nativeElement,
-            start: 'top 105%',
-            toggleActions: 'play none none reset',
-          },
-        }
-      );
+      // gsap.from(
+      //   this.cardWrappers().map(c => c.nativeElement),
+      //   {
+      //     opacity: 0,
+      //     y: 50,
+      //     duration: 1.5,
+      //     ease: 'power3.out',
+      //     stagger: 0.15,
+      //     scrollTrigger: {
+      //       trigger: this.cardWrappers()[0]?.nativeElement,
+      //       start: 'top 105%',
+      //       toggleActions: 'play none none reset',
+      //     },
+      //   }
+      // );
     });
   }
 }

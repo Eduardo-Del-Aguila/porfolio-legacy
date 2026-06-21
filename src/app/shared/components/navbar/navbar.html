@@ -16,10 +16,10 @@
         </div>
           <ul class="hidden md:flex items-center gap-8 text-sm">
             @if (!isComprimed()) {
-              <li><a [routerLinkActive]="['text-green-400']" class="hover:text-green-500/60 transition-colors">{{ 'navbar.projects' | translate }}</a></li>
-              <li><a [routerLinkActive]="['text-green-400']" class="hover:text-green-500/60 transition-colors">{{ 'navbar.skills' | translate }}</a></li>
-              <li><a [routerLinkActive]="['text-green-400']" class="hover:text-green-500/60 transition-colors">{{ 'navbar.certifications' | translate }}</a></li>
-              <li><a [routerLinkActive]="['text-green-400']" class="hover:text-green-500/60 transition-colors">{{ 'navbar.contact' | translate }}</a></li>
+              <li><a href="#home" [routerLinkActive]="['text-green-400']" class="hover:text-green-500/60 transition-colors">{{ 'navbar.home' | translate }}</a></li>
+              <li><a href="#projects" [routerLinkActive]="['text-green-400']" class="hover:text-green-500/60 transition-colors">{{ 'navbar.skills' | translate }}</a></li>
+              <li><a href="#experience" [routerLinkActive]="['text-green-400']" class="hover:text-green-500/60 transition-colors">{{ 'navbar.experience' | translate }}</a></li>
+              <!-- <li><a href="#" [routerLinkActive]="['text-green-400']" class="hover:text-green-500/60 transition-colors">{{ 'navbar.contact' | translate }}</a></li> -->
             }
             </ul>
           <button

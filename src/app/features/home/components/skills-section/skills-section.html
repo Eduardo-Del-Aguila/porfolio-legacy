@@ -1,14 +1,14 @@
   <section #skills class="flex flex-col py-10 gap-10 bg-[#0A0A0A] text-[#586359]" >
-    <h2 #sectionHeader class="text-3xl text-[#0bb13c] w-full text-center "> Habilidades </h2>
+    <h2 #sectionHeader class="text-3xl font-bold text-[#0bb13c] w-full text-center lg:text-5xl"> Habilidades </h2>
     <div cdkDropList (cdkDropListDropped)="drop($event)">
 
       @for (category of categories; track $index) {
       <div #categoryCard cdkDrag class="flex lg:flex-row flex-col border-b border-white cursor-move hover:bg-gray-700/50 ">
 
-        <div class="flex-1 text-white/40 text-5xl">{{category.key | uppercase}}</div>
+        <div class="flex-1 text-white/40 text-xl md:text-3xl  lg:text-5xl">{{category.key | uppercase}}</div>
         <div class="flex-3 flex-wrap px-6 flex items-centet justify-end gap-5 md:gap-20 ">
           @for (skill of category.skills; track $index) {
-            <span (mouseenter)="onHover($event, skill.color)"
+            <span class="text-sm" (mouseenter)="onHover($event, skill.color)"
                   (mouseleave)="onLeave($event)" [innerHTML]="skill.icon"></span>
           }
 

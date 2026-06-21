@@ -8,10 +8,11 @@ import { ContactSection } from './components/contact-section/contact-section';
 import { ProjectsService } from '../../core/services/projects.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Footer } from "../../shared/components/footer/footer";
+import { ExperienceSection } from "./components/experience-section/experience-section";
 
 @Component({
   selector: 'app-home',
-  imports: [TranslatePipe, Navbar, Hero, ProjectsSection, SkillsSection, CertificationsSection, ContactSection, Footer],
+  imports: [TranslatePipe, Navbar, Hero, ProjectsSection, SkillsSection, CertificationsSection, ContactSection, Footer, ExperienceSection],
   // imports: [Navbar, Hero, ProjectsSection, SkillsSection, CertificationsSection, ContactSection],
   templateUrl: './home.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
